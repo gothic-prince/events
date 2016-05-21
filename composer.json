@@ -1,0 +1,16 @@
+{
+    "name": "gothic-prince/events",
+    "description": "",
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.6.0"
+    },
+    "require-dev": {
+        "php": ">=5.6.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "cmspp\\plugin\\": [ "src/", "tests/src/" ]
+        }
+    }
+}
