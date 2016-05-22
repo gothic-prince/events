@@ -14,16 +14,18 @@ interface IEvent
      * @return $this
      */
     public function addEvent(IEvent $event, IWhereExecuted $whereExecuted);
-
     /**
      * @param $eventName string
      * @param IWhereExecuted $whereExecuted
      * @return $this
      */
     public function deleteEvent($eventName, IWhereExecuted $whereExecuted);
-
     /**
      * @return IEvent[]
      */
     public function getEvents();
+    /**
+     * @return string
+     */
+    public function getEventName();
 }
