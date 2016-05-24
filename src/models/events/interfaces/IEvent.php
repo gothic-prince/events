@@ -1,17 +1,18 @@
 <?php
 namespace cmspp\events\models\events\interfaces;
-use cmspp\serviceManager\interfaces\IBehavior;
+use cmspp\serviceManager\interfaces\IService;
 use cmspp\serviceManager\interfaces\IServiceManager;
 
-interface IEvent
+interface IEvent extends IService
 {
     /**
      * @param IServiceManager $serviceManager
+     * События (или более расшириный вариант, - плагины), могут управлять всем приложением, выводом или фильтрации контатна.
+     * У них есть доступ ко всем сервисам, а соответственно, с лёгкостью могут работать с базой данных, управлять или реагировать на определённые маршруты и т.д.
+     * @see IServiceManager
+     *
      * @return IEvent[]
      */
-    public function init(IServiceManager $serviceManager): array;
-    public function run(IServiceManager $serviceManager, IWhereExecuted $whereExecuted);
     
-    public function getBehavior(IServiceManager $serviceManager): IBehavior;
-    public function getName(): string;
+    public function run(IWhereExecuted $whereExecuted);
 }
