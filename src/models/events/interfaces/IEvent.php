@@ -1,31 +1,17 @@
 <?php
 namespace cmspp\events\models\events\interfaces;
+use cmspp\serviceManager\interfaces\IBehavior;
+use cmspp\serviceManager\interfaces\IServiceManager;
 
 interface IEvent
 {
     /**
-     * @param IEventManager $eventManager
-     * @param IWhereExecuted $whereExecuted
-     */
-    public function run(IEventManager $eventManager, IWhereExecuted $whereExecuted);
-    /**
-     * @param IEvent $event
-     * @param IWhereExecuted $whereExecuted
-     * @return $this
-     */
-    public function addEvent(IEvent $event, IWhereExecuted $whereExecuted);
-    /**
-     * @param $eventName string
-     * @param IWhereExecuted $whereExecuted
-     * @return $this
-     */
-    public function deleteEvent($eventName, IWhereExecuted $whereExecuted);
-    /**
+     * @param IServiceManager $serviceManager
      * @return IEvent[]
      */
-    public function getEvents();
-    /**
-     * @return string
-     */
-    public function getEventName();
+    public function init(IServiceManager $serviceManager): array;
+    public function run(IServiceManager $serviceManager, IWhereExecuted $whereExecuted);
+    
+    public function getBehavior(IServiceManager $serviceManager): IBehavior;
+    public function getName(): string;
 }

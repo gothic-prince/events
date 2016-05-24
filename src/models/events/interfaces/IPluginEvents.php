@@ -7,5 +7,5 @@ interface IPluginEvents
      * @param $eventName
      * @return IEvent[]
      */
-    public function getEvent($eventName);
+    public function getEvent($eventName): array;
 }
