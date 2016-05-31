@@ -1,9 +1,12 @@
 <?php
 namespace cmspp\events\models\events\interfaces;
-use cmspp\serviceManager\interfaces\IService;
-use cmspp\serviceManager\interfaces\IServiceManager;
 
-interface IEvent extends IService
+use cmspp\events\models\events\interfaces\Sequence\IPriority;
+use cmspp\serviceManager\interfaces\Service\IService;
+use cmspp\serviceManager\interfaces\Service\IServiceControl;
+use cmspp\serviceManager\interfaces\Service\IServiceManager;
+
+interface IEvent extends IService, IPriority
 {
     /**
      * @param IServiceManager $serviceManager
@@ -13,6 +16,6 @@ interface IEvent extends IService
      *
      * @return IEvent[]
      */
-    
-    public function run(IWhereExecuted $whereExecuted);
+
+    public function run(IServiceManager $serviceManager, IServiceControl $serviceControl): bool;
 }
