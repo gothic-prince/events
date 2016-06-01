@@ -10,7 +10,7 @@
     },
     "autoload": {
         "psr-4": {
-            "cmspp\\plugin\\": [ "src/", "tests/src/" ]
+            "cmspp\\events\\": [ "src/", "tests/src/" ]
         }
     }
 }
