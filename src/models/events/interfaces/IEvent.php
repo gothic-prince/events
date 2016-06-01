@@ -1,6 +1,5 @@
 <?php
 namespace cmspp\events\models\events\interfaces;
-
 use cmspp\events\models\events\interfaces\Sequence\IPriority;
 use cmspp\serviceManager\interfaces\Service\IService;
 use cmspp\serviceManager\interfaces\Service\IServiceControl;
