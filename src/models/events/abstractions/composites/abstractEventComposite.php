@@ -3,10 +3,15 @@ namespace cmspp\events\models\events\abstractions\composites;
 
 use cmspp\events\models\events\interfaces\IEvent;
 use cmspp\events\models\events\interfaces\composites\IEventComposite;
+use cmspp\serviceManager\interfaces\Service\IServiceControl;
 use cmspp\serviceManager\interfaces\Service\IServiceManager;
 
 abstract class AbstractEventComposite implements IEventComposite
 {
+    /**
+     * @var IServiceControl
+     */
+    private $serviceControl;
     /**
      * @var IEventComposite[]
      */
@@ -39,6 +44,7 @@ abstract class AbstractEventComposite implements IEventComposite
     public function add(IEventComposite $eventComposite): bool
     {
         $this->composites[] = $eventComposite;
+        return true;
     }
 
     public function getServiceManager(): IServiceManager
@@ -51,13 +57,23 @@ abstract class AbstractEventComposite implements IEventComposite
         $this->serviceManager = $serviceManager;
     }
 
-    public function getEvent($eventCompositeName): IEvent
+    public function getEvent(): IEvent
     {
         return $this->event;
+    }
+
+    protected function setServiceControl(IServiceControl $serviceControl)
+    {
+        $this->serviceControl = $serviceControl;
     }
 
     protected function setEvent(IEvent $event)
     {
         $this->event = $event;
+    }
+
+    public function getServiceControl(): IServiceControl
+    {
+        return $this->serviceControl;
     }
 }
