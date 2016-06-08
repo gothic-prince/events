@@ -1,7 +1,7 @@
 <?php
 namespace cmspp\events\models\events\interfaces\composites;
 use cmspp\events\models\events\interfaces\IEvent;
-use cmspp\serviceManager\interfaces\Service\IServiceControl;
+use cmspp\serviceManager\interfaces\Service\IControlManager;
 use cmspp\serviceManager\interfaces\Service\IServiceManager;
 
 interface IEventComposite
@@ -14,6 +14,6 @@ interface IEventComposite
     public function add(IEventComposite $eventComposite): bool;
     public function getServiceManager(): IServiceManager;
     public function getEvent(): IEvent;
-    public function getServiceControl(): IServiceControl;
+    public function getServiceControl(): IControlManager;
     public function run(): bool;
 }

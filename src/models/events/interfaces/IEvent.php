@@ -2,7 +2,7 @@
 namespace cmspp\events\models\events\interfaces;
 use cmspp\events\models\events\interfaces\Sequence\IPriority;
 use cmspp\serviceManager\interfaces\Service\IService;
-use cmspp\serviceManager\interfaces\Service\IServiceControl;
+use cmspp\serviceManager\interfaces\Service\IControlManager;
 use cmspp\serviceManager\interfaces\Service\IServiceManager;
 
 interface IEvent extends IService, IPriority
@@ -16,5 +16,5 @@ interface IEvent extends IService, IPriority
      * @return IEvent[]
      */
 
-    public function run(IServiceManager $serviceManager, IServiceControl $serviceControl): bool;
+    public function run(IServiceManager $serviceManager, IControlManager $serviceControl): bool;
 }
