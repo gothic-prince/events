@@ -1,8 +1,8 @@
 <?php
-namespace cmspp\events\models\events\abstractions\composites;
+namespace cmspp\events\abstractions\composites;
 
-use cmspp\events\models\events\interfaces\IEvent;
-use cmspp\events\models\events\interfaces\composites\IEventComposite;
+use cmspp\events\interfaces\IEvent;
+use cmspp\events\interfaces\composites\IEventComposite;
 use cmspp\serviceManager\interfaces\Service\IControlManager;
 use cmspp\serviceManager\interfaces\Service\IServiceManager;
 

@@ -1,5 +1,5 @@
 <?php
-namespace cmspp\events\models\events\interfaces\Sequence;
+namespace cmspp\events\interfaces\Sequence;
 
 interface IPriority
 {

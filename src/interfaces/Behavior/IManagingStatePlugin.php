@@ -1,5 +1,5 @@
 <?php
-namespace cmspp\events\models\events\interfaces\Behavior;
+namespace cmspp\events\interfaces\Behavior;
 use cmspp\serviceManager\interfaces\Behavior\IBehavior;
 
 interface IManagingStatePlugin extends IBehavior
