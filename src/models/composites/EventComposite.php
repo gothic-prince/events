@@ -1,5 +1,5 @@
 <?php
-namespace cmspp\events\classes\composites;
+namespace cmspp\events\models\composites;
 use cmspp\events\abstractions\composites\AbstractEventComposite;
 use cmspp\events\interfaces\IEvent;
 use cmspp\serviceManager\interfaces\Service\IControlManager;
