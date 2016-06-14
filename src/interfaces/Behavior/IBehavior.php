@@ -1,7 +1,7 @@
 <?php
-namespace cmspp\serviceManager\interfaces\Behavior;
-use cmspp\serviceManager\interfaces\Service\IControlManager;
-use cmspp\serviceManager\interfaces\Service\IServiceManager;
+namespace cmspp\managers\interfaces\Behavior;
+use cmspp\managers\interfaces\Service\IControlManager;
+use cmspp\managers\interfaces\Service\IServiceManager;
 
 interface IBehavior
 {

@@ -1,9 +1,9 @@
 <?php
 namespace cmspp\events\interfaces;
 use cmspp\events\interfaces\Sequence\IPriority;
-use cmspp\serviceManager\interfaces\Service\IService;
-use cmspp\serviceManager\interfaces\Service\IControlManager;
-use cmspp\serviceManager\interfaces\Service\IServiceManager;
+use cmspp\managers\interfaces\Service\IService;
+use cmspp\managers\interfaces\Service\IControlManager;
+use cmspp\managers\interfaces\Service\IServiceManager;
 
 interface IEvent extends IService, IPriority
 {

@@ -4,11 +4,10 @@ use cmspp\events\models\composites\EventComposite;
 use cmspp\plugin\models\EmptyPlugins\EmptyFirstPlugin;
 use cmspp\plugin\models\EmptyPlugins\EmptySecondPlugin;
 use cmspp\plugin\models\EmptyPlugins\EmptyThirdPlugin;
-use cmspp\serviceManager\interfaces\Service\IControlManager;
-use cmspp\serviceManager\interfaces\Service\IServiceManager;
-use cmspp\serviceManager\models\CounterServise\CounterService;
-use cmspp\serviceManager\models\EmptyManagers\EmptyControlManager;
-use cmspp\serviceManager\models\SimpleServiceManager;
+use cmspp\managers\interfaces\Service\IControlManager;
+use cmspp\managers\models\CounterServise\CounterService;
+use cmspp\managers\models\ServiceManager;
+use cmspp\managers\interfaces\Service\IServiceManager;
 
 class ChainOfExecutionTest extends \PHPUnit_Framework_TestCase
 {
@@ -26,8 +25,8 @@ class ChainOfExecutionTest extends \PHPUnit_Framework_TestCase
     public function __construct()
     {
         parent::__construct();
-        $this->serviceControl = new EmptyControlManager();
-        $this->serviceManager = new SimpleServiceManager();
+        $this->serviceControl = $this->getMock(IControlManager::class);
+        $this->serviceManager = new ServiceManager();
         $this->serviceManager->add($this->serviceManager, new CounterService(), $this->serviceControl);
     }
 
@@ -58,12 +57,8 @@ class ChainOfExecutionTest extends \PHPUnit_Framework_TestCase
             $this->serviceControl
         );
 
-
         $firstPlugin->add($secondPlugin);
-
         $secondPlugin->add($thirdPlugin);
-
-        
 
         $this->assertFalse($firstPlugin->run());
         $counterService = $this->serviceManager->get("CounterService");

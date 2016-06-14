@@ -3,8 +3,8 @@ namespace cmspp\events\abstractions\composites;
 
 use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\composites\IEventComposite;
-use cmspp\serviceManager\interfaces\Service\IControlManager;
-use cmspp\serviceManager\interfaces\Service\IServiceManager;
+use cmspp\managers\interfaces\Service\IControlManager;
+use cmspp\managers\interfaces\Service\IServiceManager;
 
 abstract class AbstractEventComposite implements IEventComposite
 {
