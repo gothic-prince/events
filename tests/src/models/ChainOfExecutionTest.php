@@ -42,42 +42,31 @@ class ChainOfExecutionTest extends \PHPUnit_Framework_TestCase
             $this->serviceManager,
             $this->serviceControl
         );
-
-        $secondPlugin = new EventComposite
-        (
-            new EmptySecondPlugin(),
-            $this->serviceManager,
-            $this->serviceControl
-        );
-
-        $thirdPlugin = new EventComposite
-        (
-            new EmptyThirdPlugin(),
-            $this->serviceManager,
-            $this->serviceControl
-        );
-
-        $firstPlugin->add($secondPlugin);
-        $secondPlugin->add($thirdPlugin);
-
-        $this->assertFalse($firstPlugin->run());
-        $counterService = $this->serviceManager->get("CounterService");
-        if ($counterService instanceof CounterService)
-        {
-            print_r($counterService->getPlugins());
-        }
-
-    }
-    public function testOneRun()
-    {
-
-    }
-    public function testTwoRun()
-    {
-
-    }
-    public function testMultiRun()
-    {
+        /*
+                $secondPlugin = new EventComposite
+                (
+                    new EmptySecondPlugin(),
+                    $this->serviceManager,
+                    $this->serviceControl
+                );
+        
+                $thirdPlugin = new EventComposite
+                (
+                    new EmptyThirdPlugin(),
+                    $this->serviceManager,
+                    $this->serviceControl
+                );
+        
+                $firstPlugin->add($secondPlugin);
+                $secondPlugin->add($thirdPlugin);
+        
+                $this->assertFalse($firstPlugin->run());
+                $counterService = $this->serviceManager->get("CounterService");
+                if ($counterService instanceof CounterService)
+                {
+                    print_r($counterService->getPlugins());
+                }
+                */
 
     }
 }

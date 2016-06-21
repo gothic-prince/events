@@ -3,29 +3,50 @@ namespace cmspp\events\abstractions\composites;
 
 use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\composites\IEventComposite;
+use cmspp\managers\interfaces\Event\IEventCompositeManager;
 use cmspp\managers\interfaces\Service\IControlManager;
 use cmspp\managers\interfaces\Service\IServiceManager;
 
 abstract class AbstractEventComposite implements IEventComposite
 {
+
+    /**
+     * @var IEventCompositeManager
+     */
+    protected $eventCompositeManager;
+    /**
+     * @var IEvent[]
+     */
+    private static $runnedEvents = [];
+
+    public function getEventCompositeManager(): IEventCompositeManager
+    {
+        return $this->eventCompositeManager;
+    }
+
+    public function setEventCompositeManager(IEventCompositeManager $eventCompositeManager)
+    {
+        $this->eventCompositeManager = $eventCompositeManager;
+    }
+
     /**
      * @var IControlManager
      */
-    private $serviceControl;
+    protected $serviceControl;
     /**
      * @var IEventComposite[]
      */
-    private $composites = [];
+    protected $composites = [];
 
     /**
      * @var IEvent
      */
-    private $event;
+    protected $event;
 
     /**
      * @var IServiceManager
      */
-    private $serviceManager;
+    protected $serviceManager;
 
     /**
      * @return IEventComposite[]
@@ -52,28 +73,27 @@ abstract class AbstractEventComposite implements IEventComposite
         return $this->serviceManager;
     }
 
-    protected function setServiceManager(IServiceManager $serviceManager)
-    {
-        $this->serviceManager = $serviceManager;
-    }
-
     public function getEvent(): IEvent
     {
         return $this->event;
-    }
-
-    protected function setServiceControl(IControlManager $serviceControl)
-    {
-        $this->serviceControl = $serviceControl;
-    }
-
-    protected function setEvent(IEvent $event)
-    {
-        $this->event = $event;
     }
 
     public function getServiceControl(): IControlManager
     {
         return $this->serviceControl;
     }
+
+    /**
+     * @return IEvent[]
+     */
+    public function getRunnedEvents(): array
+    {
+        return AbstractEventComposite::$runnedEvents;
+    }
+
+    public function setRunnedEvents(IEvent $event)
+    {
+        AbstractEventComposite::$runnedEvents[] = $event;
+    }
+
 }

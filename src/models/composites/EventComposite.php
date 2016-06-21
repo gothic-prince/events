@@ -7,30 +7,24 @@ use cmspp\managers\interfaces\Service\IServiceManager;
 
 class EventComposite extends AbstractEventComposite
 {
+
     public function __construct(IEvent $event, IServiceManager $serviceManager, IControlManager $serviceControl)
     {
-        $this->setEvent($event);
-        $this->setServiceManager($serviceManager);
-        $this->setServiceControl($serviceControl);
+
+        $this->event = $event;
+        $this->serviceManager = $serviceManager;
+        $this->serviceControl = $serviceControl;
     }
+    
     public function run(): bool
     {
-        $status = $this
-            ->getEvent()
-            ->run
-            (
-                $this->getServiceManager(),
-                $this->getServiceControl()
-            );
-
-        if ($status === false){
+        if ($this->getEvent()->run($this->getServiceManager(), $this->getServiceControl()) === false)
             return false;
-        }
+
         $eventComposites = $this->getEventComposites();
         for ($indexComposite = 0; $indexComposite < count($eventComposites); $indexComposite++) {
-            if ($eventComposites[$indexComposite]->run() === false) {
-                return false;
-            }
+            $eventComposites[$indexComposite]->run();
+            EventComposite::setRunnedEvents($eventComposites[$indexComposite]->getEvent());
         }
         return true;
     }
