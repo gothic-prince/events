@@ -1,8 +1,10 @@
 <?php
 namespace cmspp\events\abstractions\composites;
 
+use cmspp\events\interfaces\composites\IExecutedEvents;
 use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\composites\IEventComposite;
+use cmspp\events\models\composites\ExecutedEvents;
 use cmspp\managers\interfaces\Event\IEventCompositeManager;
 use cmspp\managers\interfaces\Service\IControlManager;
 use cmspp\managers\interfaces\Service\IServiceManager;
@@ -14,10 +16,7 @@ abstract class AbstractEventComposite implements IEventComposite
      * @var IEventCompositeManager
      */
     protected $eventCompositeManager;
-    /**
-     * @var IEvent[]
-     */
-    private static $runnedEvents = [];
+
 
     public function getEventCompositeManager(): IEventCompositeManager
     {
@@ -82,18 +81,21 @@ abstract class AbstractEventComposite implements IEventComposite
     {
         return $this->serviceControl;
     }
+    
+    /**
+     * @var IExecutedEvents
+     */
+    protected static $executedEvents = null;
 
     /**
-     * @return IEvent[]
+     * @return IExecutedEvents
      */
-    public function getRunnedEvents(): array
+    public static function getExecutedEvents()
     {
-        return AbstractEventComposite::$runnedEvents;
+        if (self::$executedEvents === null)
+            self::$executedEvents = new ExecutedEvents();
+            return self::$executedEvents;
     }
 
-    public function setRunnedEvents(IEvent $event)
-    {
-        AbstractEventComposite::$runnedEvents[] = $event;
-    }
 
 }

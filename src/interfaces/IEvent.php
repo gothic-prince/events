@@ -5,7 +5,7 @@ use cmspp\managers\interfaces\Service\IService;
 use cmspp\managers\interfaces\Service\IControlManager;
 use cmspp\managers\interfaces\Service\IServiceManager;
 
-interface IEvent extends IService, IPriority
+interface IEvent extends IService
 {
     /**
      * @param IServiceManager $serviceManager
