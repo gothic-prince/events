@@ -2,7 +2,7 @@
 namespace cmspp\events\interfaces\composites;
 use cmspp\events\interfaces\IEvent;
 
-interface IEventComposite extends IManagers, IEventCompositeManagerGetter, IEventCompositeManagerSetter
+interface IEventComposite extends IEventCompositeManagerGetter, IEventCompositeManagerSetter
 {
     /**
      * @return IEventComposite[]

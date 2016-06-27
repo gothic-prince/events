@@ -6,8 +6,6 @@ use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\composites\IEventComposite;
 use cmspp\events\models\composites\ExecutedEvents;
 use cmspp\managers\interfaces\Event\IEventCompositeManager;
-use cmspp\managers\interfaces\Service\IControlManager;
-use cmspp\managers\interfaces\Service\IServiceManager;
 
 abstract class AbstractEventComposite implements IEventComposite
 {
@@ -29,10 +27,6 @@ abstract class AbstractEventComposite implements IEventComposite
     }
 
     /**
-     * @var IControlManager
-     */
-    protected $serviceControl;
-    /**
      * @var IEventComposite[]
      */
     protected $composites = [];
@@ -41,11 +35,6 @@ abstract class AbstractEventComposite implements IEventComposite
      * @var IEvent
      */
     protected $event;
-
-    /**
-     * @var IServiceManager
-     */
-    protected $serviceManager;
 
     /**
      * @return IEventComposite[]
@@ -67,20 +56,12 @@ abstract class AbstractEventComposite implements IEventComposite
         return true;
     }
 
-    public function getServiceManager(): IServiceManager
-    {
-        return $this->serviceManager;
-    }
 
     public function getEvent(): IEvent
     {
         return $this->event;
     }
 
-    public function getServiceControl(): IControlManager
-    {
-        return $this->serviceControl;
-    }
     
     /**
      * @var IExecutedEvents

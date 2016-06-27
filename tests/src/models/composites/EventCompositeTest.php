@@ -3,7 +3,6 @@ namespace cmspp\events\models\composites;
 
 use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\info\IEventInfo;
-use cmspp\managers\interfaces\Service\IControlManager;
 use cmspp\managers\models\ServiceManager;
 use PHPUnit_Framework_MockObject_MockObject;
 
@@ -12,7 +11,6 @@ class EventCompositeTest extends \PHPUnit_Framework_TestCase
     public function testComposite()
     {
         /**
-         * @var $serviceControl IControlManager|PHPUnit_Framework_MockObject_MockObject
          * @var $iEventInfo IEventInfo|PHPUnit_Framework_MockObject_MockObject
          * @var $iEventInfo2 IEventInfo|PHPUnit_Framework_MockObject_MockObject
          * @var $iEventInfo3 IEventInfo|PHPUnit_Framework_MockObject_MockObject
@@ -24,9 +22,6 @@ class EventCompositeTest extends \PHPUnit_Framework_TestCase
          * @var $event4ReturnTrue IEvent|PHPUnit_Framework_MockObject_MockObject
          * @var $event5ReturnTrue IEvent|PHPUnit_Framework_MockObject_MockObject
          */
-
-        $serviceControl = $this->getMock(IControlManager::class);
-
 
         $pluginName = "Plugin #1";
         $pluginName2 = "Plugin #2";
@@ -68,11 +63,11 @@ class EventCompositeTest extends \PHPUnit_Framework_TestCase
         $event5ReturnTrue->method("run")->willReturn(true);
         $event5ReturnTrue->method("getInfo")->willReturn($iEventInfo5);
 
-        $eventComposite = new EventComposite($event1ReturnTrue, $serviceManager, $serviceControl);
-        $eventComposite2 = new EventComposite($event2ReturnFalse, $serviceManager, $serviceControl);
-        $eventComposite3 = new EventComposite($event3ReturnTrue, $serviceManager, $serviceControl);
-        $eventComposite4 = new EventComposite($event4ReturnTrue, $serviceManager, $serviceControl);
-        $eventComposite5 = new EventComposite($event5ReturnTrue, $serviceManager, $serviceControl);
+        $eventComposite = new EventComposite($event1ReturnTrue);
+        $eventComposite2 = new EventComposite($event2ReturnFalse);
+        $eventComposite3 = new EventComposite($event3ReturnTrue);
+        $eventComposite4 = new EventComposite($event4ReturnTrue);
+        $eventComposite5 = new EventComposite($event5ReturnTrue);
 
         $eventComposite->add($eventComposite2);
         $eventComposite2->add($eventComposite3);
