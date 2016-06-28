@@ -9,23 +9,29 @@ class EventComposite extends AbstractEventComposite
     {
         $this->event = $event;
     }
+
+    protected function executeCurrentEvent(): bool
+    {
+        $currentEvent = $this->getCurrentEvent();
+        $executedEvents = $this->getExecutedEvents();
+        $executedEvents->addInfoExecutedEvents($currentEvent);
+        return $currentEvent->run();
+    }
+
+    protected function executeChildrenEvent()
+    {
+        $eventComposites = $this->getChildren();
+        for ($i = 0; $i < count($eventComposites); $i++)
+            $eventComposites[$i]->run();
+        return true;
+    }
     
     public function run(): bool
     {
-        if ($this->getEvent()->run() === false)
+        if ($this->executeCurrentEvent() === false)
             return false;
 
-        $executedEvents = EventComposite::getExecutedEvents();
-        if (count($executedEvents->getInfoExecutedEvents()) === 0)
-        {
-            $executedEvents->addInfoExecutedEvents($this->getEvent());
-        }
-
-        $eventComposites = $this->getEventComposites();
-        for ($indexComposite = 0; $indexComposite < count($eventComposites); $indexComposite++) {
-            $eventComposites[$indexComposite]->run();
-            $executedEvents->addInfoExecutedEvents($eventComposites[$indexComposite]->getEvent());
-        }
+        $this->executeChildrenEvent();
         return true;
     }
 }
