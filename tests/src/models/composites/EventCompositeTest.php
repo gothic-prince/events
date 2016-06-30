@@ -4,6 +4,8 @@ namespace cmspp\events\models\composites;
 use cmspp\events\interfaces\composites\IEventComposite;
 use cmspp\events\interfaces\IEvent;
 use cmspp\events\interfaces\info\IEventInfo;
+use cmspp\events\interfaces\Sequence\IEventSequence;
+use cmspp\events\interfaces\Sequence\IPriority;
 use PHPUnit_Framework_MockObject_MockObject;
 
 class EventCompositeTest extends \PHPUnit_Framework_TestCase
@@ -71,6 +73,35 @@ class EventCompositeTest extends \PHPUnit_Framework_TestCase
             $this->assertContains($executedEventsName[$i], $allExecutedEvents[$i]->getName());
             //echo "\n" . $allExecutedEvents[$i]->getName();
         }
+    }
+    public function testPriority()
+    {
+        /*
+        uasort($events, function($a, $b){
+
+
+            $resultA = 0;
+
+            $resultB = 0;
+            if ($a instanceof IPriority)
+                $resultA = $a->getPriority();
+
+            if ($b instanceof IPriority)
+                $resultB = $b->getPriority();
+
+            return $resultA - $resultB;
+        });
+        for ($i = 0; $i < count($events); $i++)
+        {
+            $curEvent = $events[$i];
+            if ($curEvent instanceof IPriority)
+            {
+                echo "\n";
+                echo "+";
+                echo $curEvent->getPriority();
+            }
+        }
+        */
     }
 
 
